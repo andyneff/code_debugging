@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  lesson1: &lesson1
+    image: python:3
+    volumes:
+      - type: bind
+        source: .
+        target: /src
+        read_only: true
+    working_dir: /src
+    command: python /src/lesson_1/code1.py
+
+  lesson2:
+    build:
+      context: docker
+      dockerfile: lesson2.Dockerfile
+    environment:
+      - PYTHONPATH=/src/vsi_common/python
+    <<: *lesson1
+    command: python /src/lesson_1/code2.py
