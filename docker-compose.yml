@@ -8,14 +8,33 @@ services:
         source: .
         target: /src
         read_only: true
+####
+      - type: bind
+        source: /opt/projects/just/vsi_common
+        target: /src/vsi_common
+        read_only: true
+####
     working_dir: /src
     command: python /src/lesson_1/code1.py
 
-  lesson2:
+  lesson0:
+    <<: *lesson1
+    command: python /src/lesson_0/code.py
+
+  lesson2: &lesson2
     build:
       context: docker
       dockerfile: lesson2.Dockerfile
+    image: debug_lesson2
     environment:
       - PYTHONPATH=/src/vsi_common/python
     <<: *lesson1
-    command: python /src/lesson_1/code2.py
+    command: python /src/lesson_2/code2.py
+
+  lesson3:
+    <<: *lesson2
+    image: debug_lesson3
+    ports:
+      - "5678:5678"
+    working_dir: /src/lesson_3
+    command: python code3.py
