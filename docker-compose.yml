@@ -31,10 +31,45 @@ services:
     <<: *lesson1
     command: python /src/lesson_2/code2.py
 
-  lesson3:
+  lesson3: &lesson3
     <<: *lesson2
-    image: debug_lesson3
     ports:
       - "5678:5678"
     working_dir: /src/lesson_3
     command: python code3.py
+
+  lesson4:
+    <<: *lesson2
+    working_dir: /src/lesson_4
+    command: python -m ptvsd --port 5678 code4.py
+    # network_mode: host
+    ports:
+      - "5678:5678"
+    # cap_add:
+    #   - SYS_PTRACE
+
+  lesson5: &lesson5
+    <<: *lesson2
+    working_dir: /src/lesson_5
+    command: ./code5
+    cap_add:
+      - SYS_PTRACE
+
+  build5: &build5
+    <<: *lesson5
+    volumes:
+      - type: bind
+        source: .
+        target: /src
+        read_only: false
+####
+      - type: bind
+        source: /opt/projects/just/vsi_common
+        target: /src/vsi_common
+        read_only: true
+####
+
+  build6:
+    <<: *build5
+    working_dir: /src/lesson_6
+    command: g++ code6.cpp -g -o code6

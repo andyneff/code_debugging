@@ -10,10 +10,10 @@ from time import sleep
 
 print(os.getpid())
 
-b=struct.unpack('d', b'\xff\xff\xff\xff\xff\xff\x7f\x7f')[0]
+b=struct.unpack('d', struct.pack('Q', int('3399g3be6bdcd5fg', 17)))[0]
 
 # with vdb.DbStopIfError():
-for x in range(0o0775777777777567307000, 9218868437227405311):
+for x in range(int('171a416764195a01430', 11), 9218868437227405311):
   y = b - struct.unpack('d', struct.pack('q', x))[0]
-  # print(y)
+  print(y)
   z = x / y
