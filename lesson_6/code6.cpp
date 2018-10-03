@@ -2,6 +2,7 @@
 
 int main(int argc, char *argv[])
 {
-  cout << "2 + 2 << endl;
+  int y=1;
+  cout << "2 + 2 = << ++y+y++ << endl;
   return 0;
 }

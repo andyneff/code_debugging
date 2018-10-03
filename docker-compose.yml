@@ -41,12 +41,12 @@ services:
   lesson4:
     <<: *lesson2
     working_dir: /src/lesson_4
-    command: python -m ptvsd --port 5678 code4.py
+    command: bash -c 'python -m ptvsd --port 5678 --server-host 0.0.0.0 code4.py'
     # network_mode: host
     ports:
       - "5678:5678"
-    # cap_add:
-    #   - SYS_PTRACE
+    cap_add:
+      - SYS_PTRACE
 
   lesson5: &lesson5
     <<: *lesson2
@@ -73,3 +73,18 @@ services:
     <<: *build5
     working_dir: /src/lesson_6
     command: g++ code6.cpp -g -o code6
+
+  lesson6:
+    <<: *lesson5
+    working_dir: /src/lesson_6
+    command: ./code6
+
+  build7:
+    <<: *build5
+    working_dir: /src/lesson_7
+    command: g++ code7.cpp -g -o code7
+
+  lesson7:
+    <<: *lesson5
+    working_dir: /src/lesson_7
+    command: ./code7

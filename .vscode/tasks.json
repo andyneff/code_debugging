@@ -1,0 +1,69 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "start-lesson4",
+      "type": "process",
+      "command": "docker-compose",
+      "args": [
+        "up", "-d", "lesson4"
+      ]
+    },
+    {
+      "label": "stop-lesson4",
+      "type": "process",
+      "command": "docker-compose",
+      "args": [
+        "stop", "lesson4"
+      ]
+    },
+    {
+      "label": "attach-lesson4",
+      "type": "process",
+      "command": "docker-compose",
+      "args": [
+        "exec", "lesson4", "bash", "-c", "python -m ptvsd --port 5678 --pid $(pgrep python)"
+      ]
+    },
+    {
+      "label": "Build Lesson 5",
+      "group": "build",
+      "type": "shell",
+      "command": "docker-compose run --rm build5 g++ -g code5.cpp -o code5"
+    },
+    {
+      "label": "Run Lesson 5",
+      "type": "shell",
+      "command": "docker-compose run --rm lesson5",
+      "problemMatcher": "$eslint-compact",
+    },
+    {
+      "label": "Build Lesson 6",
+      "group": "build",
+      "type": "shell",
+      "command": "docker-compose run --rm build6",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Run Lesson 6",
+      "type": "shell",
+      "command": "docker-compose run --rm lesson6",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Build Lesson 7",
+      "group": "build",
+      "type": "shell",
+      "command": "docker-compose run --rm build7",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Run Lesson 7",
+      "type": "shell",
+      "command": "docker-compose run --rm lesson7",
+      "problemMatcher": "$gcc"
+    }
+  ]
+}
