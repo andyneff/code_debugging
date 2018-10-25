@@ -37,7 +37,7 @@
         "debuggerPath": "/usr/bin/gdb",
         "pipeProgram": "docker-compose",
         "pipeArgs": ["run", "--rm", "lesson6", "sh", "-c"],
-        "pipeCwd": ""
+        "pipeCwd": "${workspaceFolder}"
       },
       "MIMode": "gdb",
       "setupCommands": [
@@ -61,7 +61,31 @@
         "debuggerPath": "/usr/bin/gdb",
         "pipeProgram": "docker-compose",
         "pipeArgs": ["exec", "-T", "lesson7", "sh", "-c"],
-        "pipeCwd": ""
+        "pipeCwd": "${workspaceFolder}"
+      },
+      "MIMode": "gdb",
+      "setupCommands": [
+          {
+              "description": "Enable pretty-printing for gdb",
+              "text": "-enable-pretty-printing",
+              "ignoreFailures": true
+          }
+      ],
+      "sourceFileMap": {
+        "/src":"${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Lesson 8 Attach",
+      "type": "cppdbg",
+      "request": "attach",
+      "program": "code8",
+      "processId": "${command:pickRemoteProcess}",
+      "pipeTransport": {
+        "debuggerPath": "/usr/bin/gdb",
+        "pipeProgram": "docker",
+        "pipeArgs": ["exec", "-i", "debugging_class_lesson8_run_1", "sh", "-c"],
+        "pipeCwd": "${workspaceFolder}"
       },
       "MIMode": "gdb",
       "setupCommands": [
@@ -89,7 +113,7 @@
       ]
     },
     {
-      "name": "Python: Launch Lesson 4",
+      "name": "Lesson 4: Python Launch",
       "type": "python",
       "request": "attach",
       "port": 5678,
@@ -102,6 +126,20 @@
       ],
       "preLaunchTask": "start-lesson4",
       "postDebugTask": "stop-lesson4"
+    },
+    {
+      "name": "Lesson 4: Python Exec",
+      "type": "python",
+      "request": "attach",
+      "port": 5678,
+      "host": "localhost",
+      "pathMappings": [
+        {
+          "localRoot": "${workspaceFolder}",
+          "remoteRoot": "/src"
+        }
+      ],
+      "preLaunchTask": "exec-lesson4",
     },
     {
       "name": "Python: Inject Attach",

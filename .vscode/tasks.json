@@ -20,6 +20,15 @@
       ]
     },
     {
+      "label": "exec-lesson4",
+      "type": "process",
+      "command": "docker",
+      "args": [
+        "exec", "--detach", "debugging_class_lesson4_run_1",
+        "python", "-m", "ptvsd", "--port", "5678", "--server-host", "0.0.0.0", "/src/lesson_4/code4.py"
+      ]
+    },
+    {
       "label": "attach-lesson4",
       "type": "process",
       "command": "docker-compose",
@@ -63,6 +72,19 @@
       "label": "Run Lesson 7",
       "type": "shell",
       "command": "docker-compose run --rm lesson7",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Build Lesson 8",
+      "group": "build",
+      "type": "shell",
+      "command": "docker-compose run --rm build8",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Run Lesson 8",
+      "type": "shell",
+      "command": "docker-compose run --rm lesson8",
       "problemMatcher": "$gcc"
     }
   ]

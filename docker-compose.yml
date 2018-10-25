@@ -88,3 +88,15 @@ services:
     <<: *lesson5
     working_dir: /src/lesson_7
     command: ./code7
+
+  build8:
+    <<: *build5
+    working_dir: /src/lesson_8
+    command: g++ code8.cpp -g -o code8
+
+  lesson8:
+    <<: *lesson5
+    working_dir: /src/lesson_8
+    command: bash -c ':;./code8'
+    # Bash optimizies simple expressions. I either need complex or a zombie
+    # reaper like tini. Just something else to be 1
