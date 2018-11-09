@@ -8,12 +8,6 @@ services:
         source: .
         target: /src
         read_only: true
-####
-      - type: bind
-        source: /opt/projects/just/vsi_common
-        target: /src/vsi_common
-        read_only: true
-####
     working_dir: /src
     command: python /src/lesson_1/code1.py
 
@@ -41,7 +35,7 @@ services:
   lesson4:
     <<: *lesson2
     working_dir: /src/lesson_4
-    command: bash -c 'python -m ptvsd --port 5678 --server-host 0.0.0.0 code4.py'
+    command: bash -c 'python -m ptvsd --port 5678 --host 0.0.0.0 --wait code4.py'
     # network_mode: host
     ports:
       - "5678:5678"

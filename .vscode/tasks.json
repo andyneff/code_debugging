@@ -6,9 +6,9 @@
     {
       "label": "start-lesson4",
       "type": "process",
-      "command": "docker-compose",
+      "command": "bash",
       "args": [
-        "up", "-d", "lesson4"
+        "-c", "docker-compose up -d lesson4; sleep 5"
       ]
     },
     {
@@ -24,8 +24,8 @@
       "type": "process",
       "command": "docker",
       "args": [
-        "exec", "--detach", "debugging_class_lesson4_run_1",
-        "python", "-m", "ptvsd", "--port", "5678", "--server-host", "0.0.0.0", "/src/lesson_4/code4.py"
+        "exec", "--detach", "code_debugging_lesson4_run_1",
+        "python", "-m", "ptvsd", "--port", "5678", "--host", "0.0.0.0", "/src/lesson_4/code4.py"
       ]
     },
     {
